@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% block title %}
+    <title>Boggle</title>
+    {% endblock %}
+    <link rel="stylesheet" href="/static/app.css" />
+  </head>
+  <body>
+    <h1>Boggle</h1>
+    <section class="timer">
+      <div>
+        <span>Time:</span>
+        <span id="time-left"></span>
+      </div>
+    </section>
+    <section class="score">
+      <div>
+        <span>Score:</span>
+        <span id="current-score"></span>
+      </div>
+    </section>
+    <section class="game">
+      {% block content %} {% for ltr in session['letters'] %}
+      <div>{{ltr}}</div>
+      {% endfor %} {% endblock %}
+    </section>
+    <section class="form">
+      <form action="/verify" id="game-form" method="post">
+        <input type="text" name="guess" placeholder="Enter your guess" />
+        <button>Submit</button>
+      </form>
+    </section>
+    <section class="response">
+      <div></div>
+    </section>
+    <script src="https://unpkg.com/jquery"></script>
+    <script src="https://unpkg.com/axios/dist/axios.js"></script>
+    
+    <script src="/static/models.js"></script>
+    <script src="/static/main.js"></script>
+    <script src="/static/guess.js"></script>
+  </body>
+</html>
